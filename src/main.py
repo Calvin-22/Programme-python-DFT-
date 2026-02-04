@@ -7,13 +7,21 @@ def saisie_entier(message):
         except ValueError:
             print("Erreur : veuillez entrer un entier.")
 
-a = saisie_entier("Entrer le premier terme : ")
-b = saisie_entier("Entrer le second terme : ")
-c = saisie_entier("Entrer le troisième terme : ")
-d = saisie_entier("Entrer le quatrième terme : ")
+# --- 1. Saisie du nombre de termes ---
+N = saisie_entier("Combien de termes voulez-vous saisir ? ")
 
-print ("")
-x = np.array([a, b, c, d], dtype=float)
+# --- 2. Saisie des N valeurs ---
+x = []
+for i in range(N):
+    valeur = saisie_entier(f"Entrer le terme n°{i+1} : ")
+    x.append(valeur)
+
+# Conversion en tableau numpy
+x = np.array(x, dtype=float)
+
+# --- 3. Calcul de la DFT ---
 X = np.fft.fft(x)
 
-print("Voici votre DFT : ", X)
+# --- 4. Affichage ---
+print("\nVoici votre DFT :")
+print(X)
